@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1e1e1e;
+            color: #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #2c2c2c;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            background-color: #333;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #444;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #00bcd4;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #2c2c2c;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        th {
+            background: #444;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #333;
+        }
+
+        tr:hover {
+            background: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #008cba;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0074a6;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: #bbb;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/drones/">Drones</a></li>
+            <li><a href="/cameras/">Cameras</a></li>
+            <li><a href="/video/upload">Upload</a></li>
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/desktop/">Desktop</a></li>
+        </ul>
+    </nav>
+
+    <h1>Camera List</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Focal Length (mm)</th>
+            <th>Sensor Height (m)</th>
+            <th>Sensor Width (m)</th>
+            <th>Resolution</th>
+            <th>Brand</th>
+        </tr>
+        {% for camera in cameras %}
+        <tr>
+            <td>{{ camera.name }}</td>
+            <td>{{ camera.focal_length }}</td>
+            <td>{{ camera.sensor_height }}</td>
+            <td>{{ camera.sensor_width }}</td>
+            <td>{{ camera.resolution }}</td>
+            <td>{{ camera.brand }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/" class="btn">Back to Home</a>
+
+    <footer>
+        <p>&copy; 2025 Drone Detection</p>
+        <p><a href="/about/">About Us</a> | <a href="/contact/">Contact Us</a> | <a href="/privacy-policy/">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>

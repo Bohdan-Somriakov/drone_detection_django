@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Downloader</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1e1e1e;
+            color: #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background-color: #2c2c2c;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            background-color: #333;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #444;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #00bcd4;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        ul li {
+            margin: 15px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #008cba;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #333;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #0074a6;
+            transform: translateY(-3px);
+        }
+
+        ul li a:active {
+            transform: translateY(0);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #008cba;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0074a6;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: #bbb;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 20px;
+            text-align: justify;
+            vertical-align: top;
+            color: #ddd;
+            font-size: 18px;
+        }
+
+        /* Make the table invisible */
+        table, td {
+            border: none;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content .left, .content .center, .content .right {
+            width: 30%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/drones/">Drones</a></li>
+                <li><a href="/cameras/">Cameras</a></li>
+                <li><a href="/video/upload">Upload</a></li>
+                <li><a href="/admin/">Admin</a></li>
+                <li><a href="/about/">About Us</a></li>
+                <li><a href="/desktop/">Desktop</a></li>
+            </ul>
+        </nav>
+
+        <h1>Download Files</h1>
+
+        <table>
+            <tr>
+                <td class="left">
+                    <h2>About OpenCV</h2>
+                    <p>
+                        OpenCV (Open Source Computer Vision Library) is an open-source library that provides a vast collection of algorithms and tools
+                        for computer vision tasks. OpenCV is primarily used for image processing, computer vision, and machine learning. It allows users
+                        to work with images, video, and 3D data in a highly efficient manner. OpenCV supports a wide range of functionalities, such as
+                        image recognition, object detection, face recognition, motion analysis, and more. It is implemented in C++ but offers bindings
+                        for Python, Java, and other programming languages. OpenCV is widely used in real-time systems and embedded applications, such
+                        as robotics, medical imaging, and surveillance. The library is designed to run efficiently even on low-resource devices, making
+                        it ideal for applications where performance is crucial.
+                    </p>
+                    <p>
+                        OpenCV also provides tools for motion tracking and image stitching, which are used in technologies like augmented reality (AR)
+                        and virtual reality (VR). With OpenCV, developers can easily apply various image transformation techniques, such as rotation,
+                        scaling, and image warping. The library supports a wide range of formats and input devices, including cameras, video files,
+                        and live video streams. Additionally, OpenCV supports machine learning algorithms, which are utilized for classification,
+                        regression, clustering, and dimensionality reduction tasks. The library integrates well with other deep learning frameworks like
+                        TensorFlow, Keras, and PyTorch, enabling users to build end-to-end computer vision and machine learning pipelines.
+                    </p>
+                </td>
+                <td class="center">
+                    <h2>Files to Download</h2>
+                    <ul>
+                        {% for file in files %}
+                            <li><a href="{% url 'download_file' file %}">{{ file }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td class="right">
+                    <h2>About TensorFlow</h2>
+                    <p>
+                        TensorFlow is a comprehensive open-source machine learning framework developed by Google. It provides a variety of tools,
+                        libraries, and resources for developing machine learning models, specifically deep learning models. TensorFlow allows developers
+                        to easily create neural networks, train them using large datasets, and deploy them for a variety of applications. TensorFlow
+                        supports both CPU and GPU acceleration, making it highly scalable for both small and large-scale machine learning projects.
+                        TensorFlow includes tools such as TensorFlow Lite (for mobile and embedded devices), TensorFlow.js (for machine learning in the
+                        browser), and TensorFlow Extended (for end-to-end machine learning pipelines). TensorFlow is particularly popular in applications
+                        such as natural language processing (NLP), image recognition, speech recognition, and reinforcement learning. It is widely
+                        used in academia and industry for its flexibility and performance. TensorFlow’s user-friendly high-level API, Keras, is widely
+                        used by developers to build machine learning models with ease.
+                    </p>
+                    <p>
+                        One of the most powerful features of TensorFlow is its ability to scale and run models on different hardware architectures,
+                        from edge devices like smartphones to large-scale distributed systems using clusters of GPUs. TensorFlow also supports both
+                        supervised and unsupervised learning paradigms, providing a rich set of algorithms for tasks such as classification, regression,
+                        and anomaly detection. The TensorFlow ecosystem includes powerful visualization tools, such as TensorBoard, which allow users
+                        to monitor and debug the training process in real-time. TensorFlow's model optimization tools, such as pruning and quantization,
+                        help developers deploy efficient models to production environments with reduced latency and lower resource consumption.
+                        TensorFlow is widely used in industries like healthcare, finance, and autonomous driving, where cutting-edge AI solutions
+                        are essential for driving innovation.
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <a href="/" class="btn">Back to Home</a>
+
+        <footer>
+            <p>&copy; 2025 Drone Detection</p>
+            <p><a href="/about/">About Us</a> | <a href="/contact/">Contact Us</a> | <a href="/privacy-policy/">Privacy Policy</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>
